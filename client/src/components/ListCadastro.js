@@ -4,6 +4,20 @@ const ListCadastro = () => {
 
   const [cadastros, setCadastros] = useState([]);
 
+  //função delete cadastro
+
+  const deleteCadastro = async (id_cadastro) => {
+    try {
+      const deleteCadastro = await fetch(`http://localhost:5000/cadastros/${id_cadastro}`, {
+        method: "DELETE"
+      });
+
+      console.log(deleteCadastro);
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
+
   const getCadastros = async () => {
     try {
       
@@ -42,10 +56,10 @@ const ListCadastro = () => {
             <td>john@example.com</td>
           </tr>*/}
           {cadastros.map(cadastro => (
-            <tr>
+            <tr key={cadastro.id}>
               <td>{cadastro.email}</td>
               <td>Editar</td>
-              <td><button className="btn btn-danger">Deletar</button></td>
+              <td><button className="btn btn-danger" onClick={() => deleteCadastro(cadastro.id)}>Deletar</button></td>
             </tr>
           ))}
         </tbody>
