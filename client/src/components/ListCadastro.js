@@ -1,5 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 
+import EditCadastro from "./EditCadastro";
+
 const ListCadastro = () => {
 
   const [cadastros, setCadastros] = useState([]);
@@ -12,6 +14,7 @@ const ListCadastro = () => {
         method: "DELETE"
       });
 
+      setCadastros(cadastros.filter(cadastro => cadastro.id !== id_cadastro))
       console.log(deleteCadastro);
     } catch (err) {
       console.error(err.message)
@@ -58,8 +61,15 @@ const ListCadastro = () => {
           {cadastros.map(cadastro => (
             <tr key={cadastro.id}>
               <td>{cadastro.email}</td>
-              <td>Editar</td>
-              <td><button className="btn btn-danger" onClick={() => deleteCadastro(cadastro.id)}>Deletar</button></td>
+              <td><EditCadastro /></td>
+              <td>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => deleteCadastro(cadastro.id)}
+                >
+                  Deletar
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
