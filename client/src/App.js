@@ -4,13 +4,14 @@ import './App.css';
 // components
 
 import InputCadastro from './components/InputCadastro';
-//import ListCadastro from './components/ListCadastro';
+import ListCadastro from './components/ListCadastro';
 
 function App() {
   return (
     <Fragment>
       <div className='container'>
         <InputCadastro />
+        <ListCadastro />
       </div>
     </Fragment>
   );
