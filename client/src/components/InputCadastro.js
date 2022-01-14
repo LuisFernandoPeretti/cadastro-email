@@ -1,12 +1,35 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 
 const InputCadastro = () => {
+
+    const [email , setEmail] = useState("");
+
+    const onSubmitForm = async(e) => {
+        e.preventDefault();
+        try {
+            const body = { email };
+            const response = await fetch("http://localhost:5000/cadastros", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            });
+            console.log(response);
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
+
     return(
         <Fragment>
             <h1 className="text-center mt-5">Lista de Cadastro</h1>
-            <form>
-                <input type="text" />
-                <button>Add</button>
+            <form className="d-flex mt-5" onSubmit={onSubmitForm}>
+                <input
+                    type="text"
+                    className="form-control"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                />
+                <button className="btn btn-success">Cadastrar</button>
             </form>
         </Fragment>
     );
