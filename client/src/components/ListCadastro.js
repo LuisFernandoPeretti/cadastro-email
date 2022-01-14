@@ -61,7 +61,9 @@ const ListCadastro = () => {
           {cadastros.map(cadastro => (
             <tr key={cadastro.id}>
               <td>{cadastro.email}</td>
-              <td><EditCadastro /></td>
+              <td>
+                <EditCadastro cadastro={cadastro} />
+              </td>
               <td>
                 <button
                   className="btn btn-danger"
